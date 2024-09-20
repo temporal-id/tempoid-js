@@ -11,12 +11,15 @@
     "src"
   ],
   "keywords": [
-    "tempoid",
+    "id",
+    "nanoid",
+    "random",
+    "uuid",
     "unique-identifier",
-    "id-generator",
-    "javascript",
-    "esm"
+    "id-generator"
   ],
+  "repository": "temporal-id/tempoid-js",
+  "homepage": "tempoid.dev",
   "author": "Tien Do Nam",
   "license": "MIT",
   "engines": {
