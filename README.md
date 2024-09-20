@@ -48,3 +48,30 @@ import { tempoId, Alphabet } from 'tempoid';
 const id = tempoId();
 console.log('Generated TempoId:', id);
 ```
+
+## Parameters
+
+### ➤ Length
+
+By default, the length of the ID is 21 characters.
+It contains an 8-character UNIX timestamp and an 13-character random string.
+You can change the length by passing the `timeLength` and `randomLength` parameters.
+
+```javascript
+const id = tempoId({ timeLength: 10, randomLength: 10 });
+console.log('Generated TempoId:', id);
+```
+
+### ➤ Alphabet
+
+By default, the ID is encoded with an alphanumeric alphabet (`[A-Za-z0-9]`) without any special characters,
+making it easy to select and copy.
+You can change the alphabet by passing the `alphabet` parameter.
+
+```javascript
+// use a different alphabet
+const id1 = tempoId({ alphabet: Alphabet.base64 });
+
+// or create a custom alphabet
+const id2 = tempoId({ alphabet: '0123456789abcdef' });
+```
