@@ -4,7 +4,7 @@
 ![ci](https://github.com/temporal-id/tempoid-js/actions/workflows/ci.yml/badge.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-IDs with temporal ordering and short length.
+Short IDs with temporal ordering.
 
 A library to generate URL-friendly, unique, and short IDs that are sortable by time. Inspired by nanoid and UUIDv7.
 
@@ -12,10 +12,11 @@ See [tempoid.dev](https://tempoid.dev) for more information.
 
 ## Motivation
 
-- **URL-friendly**: The IDs are URL-friendly and can be used in web applications.
+- **URL-friendly**: The IDs are easy to select and copy.
 - **Unique**: The IDs are practically unique and can be used in distributed systems.
 - **Short**: The IDs are shorter than UUIDs because they are encoded with a larger alphabet.
 - **Sortable**: The IDs are sortable by time because a timestamp is encoded in the beginning of the ID.
+- **Customizable**: You can configure the ID length and the characters used.
 
 Example ID:
 
