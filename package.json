@@ -1,6 +1,6 @@
 {
   "name": "tempoid",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A library to generate URL-friendly, unique, and short IDs that are sortable by time. Inspired by nanoid and UUIDv7.",
   "main": "./src/tempoId.js",
   "type": "module",
@@ -24,5 +24,10 @@
   "license": "MIT",
   "engines": {
     "node": ">=15.0.0"
+  },
+  "devDependencies": {
+    "nanoid": "^5.0.7",
+    "tinybench": "^2.9.0",
+    "uuid": "^10.0.0"
   }
 }
