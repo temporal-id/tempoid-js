@@ -1,9 +1,5 @@
 import * as crypto from 'crypto';
 
-if (!crypto || typeof crypto.getRandomValues !== 'function') {
-  throw new Error('Web Crypto API is not available.');
-}
-
 // Predefined alphabets
 const Alphabet = {
   numbers: '0123456789',
