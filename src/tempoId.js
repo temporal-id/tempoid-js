@@ -6,7 +6,7 @@ const Alphabet = {
   lowercase: 'abcdefghijklmnopqrstuvwxyz',
   uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
   get alphanumeric() {
-    return this.numbers + this.lowercase + this.uppercase;
+    return this.numbers + 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz';
   },
   get url() {
     return this.alphanumeric + '_-';
@@ -14,7 +14,7 @@ const Alphabet = {
   get base64() {
     return this.alphanumeric + '+/';
   },
-  noDoppelganger: '346789ABCDEFGHJKLMNPQRTUVWXYabcdefghijkmnpqrtwxyz',
+  noDoppelganger: '346789AaBbCcDdEeFfGgHhiJjKkLMmNnPpQqRrTtUVWwXxYyz',
 };
 
 const defaultAlphabet = Alphabet.alphanumeric;
