@@ -1,6 +1,4 @@
-import { webcrypto as nodeCrypto } from 'crypto';
-
-const crypto = globalThis.crypto || nodeCrypto;
+import * as crypto from 'crypto';
 
 if (!crypto || typeof crypto.getRandomValues !== 'function') {
   throw new Error('Web Crypto API is not available.');
@@ -66,35 +64,39 @@ function tempoId(options = {}) {
   return timePart + randomPart;
 }
 
+/**
+ * Generates a random Uint8Array of the specified length (range: 0-255).
+ * @param bytes {number} - The length of the Uint8Array
+ * @returns {Uint8Array} - The generated random Uint8Array
+ */
+function randomU8Array(bytes) {
+  return crypto.getRandomValues(new Uint8Array(bytes))
+}
+
 function generateRandomString(length, alphabet) {
   const characters = alphabet;
   const alphabetSize = characters.length;
   let randomString = '';
 
+  let mask = (2 << (Math.log(alphabet.length - 1) / Math.LN2)) - 1;
+  let randomBytes;
+  let randomIndex;
+
   for (let i = 0; i < length; i++) {
-    const randomIndex = getRandomInt(alphabetSize);
-    randomString += characters[randomIndex];
+    let character;
+    do {
+      if (!randomBytes || randomIndex >= randomBytes.length) {
+        randomBytes = randomU8Array(length * 2);
+        randomIndex = 0;
+      }
+      character = randomBytes[randomIndex] & mask;
+      randomIndex += 1;
+    } while (character >= alphabetSize);
+
+    randomString += characters[character];
   }
 
   return randomString;
-}
-
-function getRandomInt(max) {
-  if (max <= 0) {
-    throw new Error('max must be positive');
-  }
-
-  const maxUint32 = 0xffffffff;
-  const limit = Math.floor(maxUint32 / max) * max;
-  let rand;
-
-  do {
-    const buffer = new Uint32Array(1);
-    crypto.getRandomValues(buffer);
-    rand = buffer[0];
-  } while (rand >= limit);
-
-  return rand % max;
 }
 
 function generateTime({ timeLength, time, startTime, padLeft = true, alphabet }) {
