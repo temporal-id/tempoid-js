@@ -12,3 +12,9 @@ const customId = tempoId({
   alphabet: Alphabet.hexadecimalLowercase,
 });
 console.log('Custom TempoId:', customId);
+
+const noTimeId = tempoId({
+  timeLength: 0,
+  randomLength: 1,
+});
+console.log('No time TempoId:', noTimeId);
