@@ -94,7 +94,7 @@ function generateRandomString(length, alphabet) {
 }
 
 function generateTime({ timeLength, time, startTime, padLeft = true, alphabet }) {
-  if (timeLength === 0) {
+  if (!timeLength) {
     return '';
   }
 
