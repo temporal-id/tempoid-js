@@ -1,5 +1,3 @@
-import * as crypto from 'crypto';
-
 // Predefined alphabets
 const Alphabet = {
   numbers: '0123456789',
