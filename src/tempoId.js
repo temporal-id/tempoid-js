@@ -58,13 +58,27 @@ function tempoId(options = {}) {
   return timePart + randomPart;
 }
 
-/**
- * Generates a random Uint8Array of the specified length (range: 0-255).
- * @param bytes {number} - The length of the Uint8Array
- * @returns {Uint8Array} - The generated random Uint8Array
- */
-function randomU8Array(bytes) {
-  return crypto.getRandomValues(new Uint8Array(bytes))
+const POOL_SIZE_MULTIPLIER = 64
+
+// Uint8Array filled with random values
+let pool
+
+// Points to the next value to read in the pool
+let poolCursor
+
+function getRandomBytes(size) {
+  if (!pool || pool.byteLength < size) {
+    pool = new Uint8Array(size * POOL_SIZE_MULTIPLIER)
+    crypto.getRandomValues(pool)
+    poolCursor = 0
+  } else if (poolCursor + size > pool.byteLength) {
+    crypto.getRandomValues(pool)
+    poolCursor = 0
+  }
+
+  const bytes = pool.subarray(poolCursor, poolCursor + size)
+  poolCursor += size
+  return bytes
 }
 
 function generateRandomString(length, alphabet) {
@@ -80,7 +94,7 @@ function generateRandomString(length, alphabet) {
     let character;
     do {
       if (!randomBytes || randomIndex >= randomBytes.length) {
-        randomBytes = randomU8Array(length * 2);
+        randomBytes = getRandomBytes(length * 2);
         randomIndex = 0;
       }
       character = randomBytes[randomIndex] & mask;
