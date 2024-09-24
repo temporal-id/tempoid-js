@@ -9,7 +9,7 @@ const Alphabet = {
     return this.numbers + 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz';
   },
   get url() {
-    return this.alphanumeric + '_-';
+    return this.alphanumeric + '-_';
   },
   get base64() {
     return this.alphanumeric + '+/';
